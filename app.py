@@ -96,6 +96,25 @@ def get_portfolio(df):
 
 st.set_page_config(page_title="Portfolio Optimization", page_icon=":chart_with_upwards_trend:",layout="wide")
 
+st.markdown(
+    """
+        <html>
+        <style>
+        /* Set the width of the date picker */
+        .stDateInput {
+            width: 150px !important;
+        }
+        .stDateInput:nth-child(1) {
+            float: left;
+        }
+        .stDateInput:nth-child(2){
+            float: right !important;
+        }
+        </style>
+        </html>
+        """,
+        unsafe_allow_html=True
+)
 st.title('Portfolio Optimization: Comparing Weighting Methods')
 
 left_column, right_column = st.columns(2)
@@ -105,7 +124,7 @@ options = ["AAPL", "MSFT", "AMZN", "GOOG","IBM", "META", "TSLA", "JPM", "NVDA"]
 with left_column:
     st.header("Stock Chart Dashboard")
     selected_options = st.multiselect("Select stocks", options,key="ticker_key")
-
+    
     start_date = st.date_input("Start date", value=date.today() - relativedelta(years=5), key="start_date")
     end_date = st.date_input("End date", value=date.today(),max_value=date.today(), key="end_date")
     
